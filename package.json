@@ -1,0 +1,14 @@
+{
+  "name": "learn-ts",
+  "version": "1.0.0",
+  "description": "TypeScript notes before the Angular lessons",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
