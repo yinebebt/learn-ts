@@ -1,0 +1,15 @@
+:host { /* styles the root element of this component - app.html, when selected in the browser */
+  display: block;
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  padding: 1.5rem;
+}
+
+h1 {
+  margin: 1.25rem 0; /* top right and bottom left */
+  color: #34333a;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
