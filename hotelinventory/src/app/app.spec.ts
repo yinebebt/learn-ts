@@ -1,10 +1,13 @@
+import { provideRouter } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
@@ -13,10 +16,10 @@ describe('App', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('renders title', async () => {
+  it('renders brand', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
-    const h1 = fixture.nativeElement.querySelector('h1') as HTMLElement;
-    expect(h1.textContent).toContain('hotelinventory');
+    const brand = fixture.nativeElement.querySelector('.app-brand') as HTMLElement;
+    expect(brand.textContent).toContain('Hotelinventory');
   });
 });

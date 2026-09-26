@@ -1,0 +1,14 @@
+<section class="rooms">
+  <header class="rooms__header">
+    <h1>Rooms</h1>
+    <p class="rooms__summary">{{ rooms.length }} rooms</p>
+  </header>
+
+  <div class="rooms__grid">
+    @for (room of rooms; track room.id) {
+      <app-room-card [room]="room" />
+    } @empty {
+      <p class="rooms__empty">No rooms yet.</p>
+    }
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<article class="room-card" [class.room-card--unavailable]="!room().available">
+  <img class="room-card__image" [src]="room().image" [alt]="room().name" width="320" height="200" />
+
+  <div class="room-card__body">
+    <h2 class="room-card__title">{{ room().name }}</h2>
+    <p class="room-card__price">{{ room().price | currency: 'ETB' }} / night</p>
+    <p class="room-card__meta">Sleeps {{ room().capacity }}</p>
+    <p class="room-card__status">
+      {{ room().available ? 'Available' : 'Not available' }}
+    </p>
+  </div>
+</article>
