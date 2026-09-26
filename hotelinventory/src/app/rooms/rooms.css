@@ -3,7 +3,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .rooms__header h1 {
@@ -16,6 +16,20 @@
   margin: 0;
   color: #666;
   font-size: 0.95rem;
+}
+
+.rooms__search {
+  margin-bottom: 1.25rem;
+}
+
+.rooms__search input {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
 }
 
 .rooms__grid {
