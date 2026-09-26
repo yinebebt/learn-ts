@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { Room } from './room.model';
 import { RoomCard } from './room-card';
 
@@ -9,6 +9,8 @@ import { RoomCard } from './room-card';
   styleUrl: './rooms.css',
 })
 export class Rooms {
+  readonly searchTerm = signal('');
+
   readonly rooms: Room[] = [
     {
       id: 1,
@@ -36,4 +38,17 @@ export class Rooms {
       available: true,
     },
   ];
+
+  readonly filteredRooms = computed(() => {
+    const term = this.searchTerm().trim().toLowerCase();
+    if (!term) {
+      return this.rooms;
+    }
+    return this.rooms.filter((room) => room.name.toLowerCase().includes(term));
+  });
+
+  onSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchTerm.set(value);
+  }
 }

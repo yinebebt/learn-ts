@@ -1,14 +1,25 @@
 <section class="rooms">
   <header class="rooms__header">
     <h1>Rooms</h1>
-    <p class="rooms__summary">{{ rooms.length }} rooms</p>
+    <p class="rooms__summary">{{ filteredRooms().length }} / {{ rooms.length }}</p>
   </header>
 
+  <div class="rooms__search">
+    <input
+      id="rooms-search"
+      type="search"
+      placeholder="Search by name"
+      aria-label="Search rooms by name"
+      [value]="searchTerm()"
+      (input)="onSearch($event)"
+    />
+  </div>
+
   <div class="rooms__grid">
-    @for (room of rooms; track room.id) {
+    @for (room of filteredRooms(); track room.id) {
       <app-room-card [room]="room" />
     } @empty {
-      <p class="rooms__empty">No rooms yet.</p>
+      <p class="rooms__empty">No rooms match.</p>
     }
   </div>
 </section>
