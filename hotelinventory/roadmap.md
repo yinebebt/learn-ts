@@ -65,7 +65,7 @@ components → routes       forms → HTTP → structure   MVP → auth/money   
 | Version | Phase | Learn | Build (thin) | New layer? |
 |---------|-------|--------|--------------|------------|
 | **0.1.0** | 0 | Project shape | Root shell | — ✅ |
-| **0.2.0** | 1 | Components, `@for` | Rooms list | Minimal CSS only |
+| **0.2.0** | 1 | Components, `@for` | Rooms list | Minimal CSS only ✅ |
 | **0.3.0** | 2 | Signals | Filter / select | — |
 | **0.4.0** | 3 | Router | Multi-page | Simple nav (no Material yet) |
 | **0.5.0** | 4 | Reactive forms | Add/edit room | **Start using Tailwind for layout** |
@@ -100,19 +100,21 @@ components → routes       forms → HTTP → structure   MVP → auth/money   
 
 ---
 
-## Phase 1 — Components & templates — `v0.2.0`
+## Phase 1 — Components & templates — `v0.2.0` ✅
 
 **Learn:** generate component, binding, `@if` / `@for`, inputs/outputs.  
 **Build:** hard-coded rooms list.  
 **Layer:** **minimal CSS only** (`app.css` / component CSS). Do **not** introduce Material. Tailwind optional/sparse (one class is fine; no design system).
 
-- [ ] `ng g c rooms` (and maybe `room-card`)
-- [ ] List rooms with `@for`
-- [ ] Parent/child input–output if useful
-- [ ] Keep UI ugly-but-clear OK
-- [ ] Bump `0.2.0` + tag
+- [x] `ng g c rooms` (+ `room-card` with `input()`)
+- [x] List rooms with `@for` / `@empty`
+- [x] Parent → child via `[room]="room"`
+- [x] Minimal CSS (grid + card)
+- [x] Images from `public/` (`/room-1.jpg`, `/room-2.jpeg`)
+- [x] Simple route + nav so `/rooms` is usable
+- [x] Bump `0.2.0`
 
-**Checkpoint:** You understand components. List works.
+**Checkpoint:** You understand components. List works at `/rooms`.
 
 ---
 
@@ -319,5 +321,6 @@ Why not earlier: branding on a single list wastes time.
 
 ## Current
 
-**Now:** Phase 0 ✅ (`v0.1.0`) → **Phase 1 (`v0.2.0`)**: rooms list with `@for`, **minimal CSS**, no Material design system yet.  
-**Next layers:** Tailwind in earnest @ `0.5` · Material @ `0.7` · Brand @ `0.8` · Auth/money @ `0.9` · Beta @ `1.0.0-beta`.
+**Now:** Phase 1 ✅ (`v0.2.0`) — rooms list + `room-card`.  
+**Next:** Phase 2 (`v0.3.0`) — signals for filter / selected room.  
+**Later layers:** Tailwind @ `0.5` · Material @ `0.7` · Brand @ `0.8` · Auth/money @ `0.9` · Beta @ `1.0.0-beta`.
