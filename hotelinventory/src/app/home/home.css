@@ -1,0 +1,17 @@
+.home h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 650;
+}
+
+.home p {
+  margin: 0 0 0.75rem;
+  color: #444;
+  max-width: 28rem;
+  line-height: 1.45;
+}
+
+.home a {
+  color: #1a1a1a;
+  font-weight: 600;
+}

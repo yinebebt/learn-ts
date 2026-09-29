@@ -5,6 +5,12 @@
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+
+.room-card:hover {
+  border-color: #bbb;
 }
 
 .room-card--unavailable {

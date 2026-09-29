@@ -67,7 +67,7 @@ components → routes       forms → HTTP → structure   MVP → auth/money   
 | **0.1.0** | 0 | Project shape | Root shell | — ✅ |
 | **0.2.0** | 1 | Components, `@for` | Rooms list | Minimal CSS only ✅ |
 | **0.3.0** | 2 | Signals | Filter rooms | — ✅ |
-| **0.4.0** | 3 | Router | Multi-page | Simple nav (no Material yet) |
+| **0.4.0** | 3 | Router | Multi-page | Simple nav (no Material yet) ✅ |
 | **0.5.0** | 4 | Reactive forms | Add/edit room | **Start using Tailwind for layout** |
 | **0.6.0** | 5 | Services, HTTP | API/mock data | Loading/error patterns |
 | **0.7.0** | 6 | Structure, tests | Feature folders | **Add Angular Material** (forms/nav/dialogs) |
@@ -131,15 +131,17 @@ components → routes       forms → HTTP → structure   MVP → auth/money   
 
 ---
 
-## Phase 3 — Routing — `v0.4.0`
+## Phase 3 — Routing — `v0.4.0` ✅
 
 **Learn:** routes, `RouterLink`, params.  
 **Build:** home / rooms / detail.  
 **Layer:** simple header links — **still no Material sidenav**.
 
-- [ ] Wire `app.routes.ts`
-- [ ] Plain nav in header
-- [ ] Bump `0.4.0` + tag
+- [x] Wire `app.routes.ts` (`''`, `rooms`, `rooms/:id`)
+- [x] Home + Rooms nav; `withComponentInputBinding()` for `:id`
+- [x] Room detail page (not modal); shared `rooms.data.ts`
+- [x] Card links to detail
+- [x] Bump `0.4.0`
 
 **Checkpoint:** URL changes pages. Basics of “app” exist.
 
@@ -321,6 +323,6 @@ Why not earlier: branding on a single list wastes time.
 
 ## Current
 
-**Now:** Phase 2 ✅ (`v0.3.0`) — search filter (signals).  
-**Next:** Phase 3 (`v0.4.0`) — home / rooms / detail routes.  
-**Later layers:** Tailwind @ `0.5` · Material @ `0.7` · Brand @ `0.8` · Auth/money @ `0.9` · Beta @ `1.0.0-beta`.
+**Now:** Phase 3 ✅ (`v0.4.0`) — home / rooms / `rooms/:id`.  
+**Next:** Phase 4 (`v0.5.0`) — forms + Tailwind layout.  
+**Later layers:** Material @ `0.7` · Brand @ `0.8` · Auth/money @ `0.9` · Beta @ `1.0.0-beta`.
