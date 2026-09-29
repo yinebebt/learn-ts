@@ -1,10 +1,13 @@
+import { provideRouter } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
+import { routes } from '../app.routes';
 import { Rooms } from './rooms';
 
 describe('Rooms', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Rooms],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 

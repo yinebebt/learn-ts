@@ -1,0 +1,21 @@
+<section class="room-detail">
+  <p>
+    <a routerLink="/rooms">← Back to rooms</a>
+  </p>
+
+  @if (room(); as room) {
+    <article>
+      <img [src]="room.image" [alt]="room.name" width="640" height="360" />
+      <div>
+        <h1>{{ room.name }}</h1>
+        <p>{{ room.price | currency: 'ETB' }} / night</p>
+        <p>Sleeps {{ room.capacity }}</p>
+        <p>{{ room.available ? 'Available' : 'Not available' }}</p>
+      </div>
+    </article>
+  } @else {
+    <h1>Room not found</h1>
+    <p>No room matches id “{{ id() }}”.</p>
+    <p><a routerLink="/rooms">View all rooms</a></p>
+  }
+</section>

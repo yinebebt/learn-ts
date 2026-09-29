@@ -1,4 +1,8 @@
-<article class="room-card" [class.room-card--unavailable]="!room().available">
+<a
+  class="room-card"
+  [class.room-card--unavailable]="!room().available"
+  [routerLink]="['/rooms', room().id]"
+>
   <img class="room-card__image" [src]="room().image" [alt]="room().name" width="320" height="200" />
 
   <div class="room-card__body">
@@ -9,4 +13,4 @@
       {{ room().available ? 'Available' : 'Not available' }}
     </p>
   </div>
-</article>
+</a>
