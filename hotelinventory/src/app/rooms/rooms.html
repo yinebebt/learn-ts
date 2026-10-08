@@ -1,25 +1,45 @@
 <section class="rooms">
   <header class="rooms__header">
-    <h1>Rooms</h1>
-    <p class="rooms__summary">{{ filteredRooms().length }} / {{ rooms.length }}</p>
+    <div>
+      <h1>Rooms</h1>
+      <p class="rooms__summary">
+        @if (status() === 'loading') {
+          Loading…
+        } @else if (status() === 'error') {
+          Could not load rooms
+        } @else {
+          {{ filteredRooms().length }} / {{ rooms().length }}
+        }
+      </p>
+    </div>
+    <a routerLink="/rooms/new" class="rooms__add">Add room</a>
   </header>
 
-  <div class="rooms__search">
-    <input
-      id="rooms-search"
-      type="search"
-      placeholder="Search by name"
-      aria-label="Search rooms by name"
-      [value]="searchTerm()"
-      (input)="onSearch($event)"
-    />
-  </div>
+  @if (status() === 'loading') {
+    <p class="rooms__status">Loading rooms…</p>
+  } @else if (status() === 'error') {
+    <p class="rooms__status">{{ errorMessage() }}</p>
+    <button type="button" class="rooms__retry" (click)="retry()">Try again</button>
+  } @else {
+    <div class="rooms__search">
+      <input
+        id="rooms-search"
+        type="search"
+        placeholder="Search by name"
+        aria-label="Search rooms by name"
+        [value]="searchTerm()"
+        (input)="onSearch($event)"
+      />
+    </div>
 
-  <div class="rooms__grid">
-    @for (room of filteredRooms(); track room.id) {
-      <app-room-card [room]="room" />
-    } @empty {
-      <p class="rooms__empty">No rooms match.</p>
-    }
-  </div>
+    <div class="rooms__grid">
+      @for (room of filteredRooms(); track room.id) {
+        <app-room-card [room]="room" />
+      } @empty {
+        <p class="rooms__empty">
+          {{ searchTerm().trim() ? 'No rooms match.' : 'No rooms yet.' }}
+        </p>
+      }
+    </div>
+  }
 </section>

@@ -3,7 +3,15 @@
     <a routerLink="/rooms">← Back to rooms</a>
   </p>
 
-  @if (room(); as room) {
+  @if (status() === 'loading') {
+    <p class="room-detail__status">Loading room…</p>
+  } @else if (status() === 'error') {
+    <h1>Could not load rooms</h1>
+    <p>{{ errorMessage() }}</p>
+    <p>
+      <button type="button" class="room-detail__retry" (click)="retry()">Try again</button>
+    </p>
+  } @else if (room(); as room) {
     <article>
       <img [src]="room.image" [alt]="room.name" width="640" height="360" />
       <div>
@@ -11,6 +19,10 @@
         <p>{{ room.price | currency: 'ETB' }} / night</p>
         <p>Sleeps {{ room.capacity }}</p>
         <p>{{ room.available ? 'Available' : 'Not available' }}</p>
+        <div class="room-detail__actions">
+          <a [routerLink]="['/rooms', room.id, 'edit']">Edit room</a>
+          <button type="button" class="room-detail__delete" (click)="onDelete()">Delete room</button>
+        </div>
       </div>
     </article>
   } @else {

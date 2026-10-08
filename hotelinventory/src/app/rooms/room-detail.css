@@ -31,7 +31,43 @@
   font-size: 1.5rem;
 }
 
-.room-detail p {
+.room-detail p,
+.room-detail__status {
   margin: 0.35rem 0;
   color: #444;
+}
+
+.room-detail__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.room-detail__delete,
+.room-detail__retry {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #9b2c2c;
+  border-radius: 6px;
+  background: #fff;
+  color: #9b2c2c;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.room-detail__retry {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.room-detail__delete:hover {
+  background: #9b2c2c;
+  color: #fff;
+}
+
+.room-detail__retry:hover {
+  background: #1a1a1a;
+  color: #fff;
 }
