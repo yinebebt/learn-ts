@@ -68,8 +68,8 @@ components → routes       forms → HTTP → structure   MVP → auth/money   
 | **0.2.0** | 1 | Components, `@for` | Rooms list | Minimal CSS only ✅ |
 | **0.3.0** | 2 | Signals | Filter rooms | — ✅ |
 | **0.4.0** | 3 | Router | Multi-page | Simple nav (no Material yet) ✅ |
-| **0.5.0** | 4 | Reactive forms | Add/edit room | **Start using Tailwind for layout** |
-| **0.6.0** | 5 | Services, HTTP | API/mock data | Loading/error patterns |
+| **0.5.0** | 4 | Reactive forms | Add/edit room | **Start using Tailwind for layout** ✅ |
+| **0.6.0** | 5 | Services, HTTP | API/mock data | Loading/error patterns ✅ |
 | **0.7.0** | 6 | Structure, tests | Feature folders | **Add Angular Material** (forms/nav/dialogs) |
 | **0.8.0** | 7 | Apply all above | Guests + bookings MVP | Brand kit (practical) |
 | **0.9.0** | 8 | Auth, interceptors | Login, plans, billing hooks | Monetization layer |
@@ -139,42 +139,42 @@ components → routes       forms → HTTP → structure   MVP → auth/money   
 
 - [x] Wire `app.routes.ts` (`''`, `rooms`, `rooms/:id`)
 - [x] Home + Rooms nav; `withComponentInputBinding()` for `:id`
-- [x] Room detail page (not modal); shared `rooms.data.ts`
+- [x] Room detail page; shared `rooms.data.ts` store
 - [x] Card links to detail
 - [x] Bump `0.4.0`
 
-**Checkpoint:** URL changes pages. Basics of “app” exist.
+**Checkpoint:** URL changes pages.
 
 ---
 
-## Phase 4 — Forms + start Tailwind — `v0.5.0`
+## Phase 4 — Forms + start Tailwind — `v0.5.0` ✅
 
 **Learn:** reactive forms, validators.  
 **Build:** add/edit room.  
-**Layer:** **Tailwind for layout** (spacing, simple responsive). Still **no Material** unless a single control is painfully hard — prefer native + Tailwind first.
+**Layer:** **Tailwind for form layout**. Still **no Material**.
 
-Why Tailwind *now:* forms and multi-page layout start to sprawl; utilities pay off.  
-Why not Material *yet:* learn forms without fighting a theme.
+- [x] `/rooms/new` + `/rooms/:id/edit` (shared `RoomForm`)
+- [x] Add: available defaults **on**, checkbox **hidden**
+- [x] Edit: available checkbox shown
+- [x] Validation + save into in-memory store
+- [x] Bump `0.5.0`
 
-- [ ] Add/edit room form
-- [ ] Use Tailwind for page/form layout
-- [ ] Bump `0.5.0` + tag
-
-**Checkpoint:** Can create/edit a room; layout cleaner via Tailwind.
+**Checkpoint:** Can create/edit a room; form uses Tailwind.
 
 ---
 
-## Phase 5 — HTTP & services — `v0.6.0`
+## Phase 5 — HTTP & services — `v0.6.0` ✅
 
 **Learn:** `inject()`, services, HTTP / `httpResource`, loading/error.  
 **Build:** `RoomsService` + mock/API.  
 **Layer:** data layer (not UI kit). Keep Tailwind for layout.
 
-- [ ] Move data out of components
-- [ ] Loading / error UI (simple)
-- [ ] Bump `0.6.0` + tag
+- [x] Move data out of components (`RoomsService`)
+- [x] Loading / error UI (simple) — fake delay, retry
+- [x] Delete room (confirm, then back to the list)
+- [x] Bump `0.6.0` (git tag when you commit)
 
-**Checkpoint:** Data comes from a service. Basics + data layer solid.
+**Checkpoint:** Data comes from a service. Basics + data layer solid. No real HTTP server yet; `fetchRooms()` is the seam.
 
 ---
 
@@ -323,6 +323,6 @@ Why not earlier: branding on a single list wastes time.
 
 ## Current
 
-**Now:** Phase 3 ✅ (`v0.4.0`) — home / rooms / `rooms/:id`.  
-**Next:** Phase 4 (`v0.5.0`) — forms + Tailwind layout.  
-**Later layers:** Material @ `0.7` · Brand @ `0.8` · Auth/money @ `0.9` · Beta @ `1.0.0-beta`.
+**Now:** Phase 5 ✅ (`v0.6.0`) — `RoomsService`, loading/error, delete.  
+**Next:** Phase 6 (`v0.7.0`) — feature folders + Angular Material.  
+**Later:** MVP guests/bookings @ `0.8` · Auth/money @ `0.9` · Beta @ `1.0.0-beta`.

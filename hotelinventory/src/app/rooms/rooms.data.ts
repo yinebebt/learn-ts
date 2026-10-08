@@ -1,6 +1,7 @@
 import { Room } from './room.model';
 
-export const ROOMS: Room[] = [
+/** Mock payload. `RoomsService` loads this the way a later HTTP call would. */
+export const seedRooms: Room[] = [
   {
     id: 1,
     name: 'Garden Twin',
@@ -27,7 +28,3 @@ export const ROOMS: Room[] = [
     available: true,
   },
 ];
-
-export function findRoomById(id: number): Room | undefined {
-  return ROOMS.find((room) => room.id === id);
-}

@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
 import { RoomDetail } from './rooms/room-detail';
+import { RoomForm } from './rooms/room-form';
 import { Rooms } from './rooms/rooms';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', component: Home },
+  { path: '', pathMatch: 'full', redirectTo: 'rooms' },
   { path: 'rooms', component: Rooms },
+  { path: 'rooms/new', component: RoomForm },
+  { path: 'rooms/:id/edit', component: RoomForm },
   { path: 'rooms/:id', component: RoomDetail },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'rooms' },
 ];

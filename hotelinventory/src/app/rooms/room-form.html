@@ -1,0 +1,105 @@
+<section class="mx-auto max-w-lg">
+  <p class="mb-4">
+    <a routerLink="/rooms" class="text-neutral-600 hover:text-neutral-900">← Back to rooms</a>
+  </p>
+
+  @if (isEdit() && status() === 'loading') {
+    <p class="text-neutral-600">Loading room…</p>
+  } @else if (isEdit() && status() === 'error') {
+    <h1 class="mb-2 text-2xl font-semibold">Could not load rooms</h1>
+    <p class="mb-4 text-neutral-600">{{ errorMessage() }}</p>
+    <button
+      type="button"
+      class="rounded-md bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700"
+      (click)="retry()"
+    >
+      Try again
+    </button>
+  } @else if (missing()) {
+    <h1 class="mb-2 text-2xl font-semibold">Room not found</h1>
+    <p class="mb-4 text-neutral-600">No room matches id “{{ id() }}”.</p>
+    <a routerLink="/rooms" class="font-semibold text-neutral-900">View all rooms</a>
+  } @else {
+    <h1 class="mb-6 text-2xl font-semibold">
+      {{ isEdit() ? 'Edit room' : 'Add room' }}
+    </h1>
+
+    <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium" for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="rounded-md border border-neutral-300 px-3 py-2"
+        />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <p class="text-sm text-red-700">Name is required.</p>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium" for="price">Price (ETB / night)</label>
+        <input
+          id="price"
+          type="number"
+          formControlName="price"
+          min="0"
+          step="1"
+          class="rounded-md border border-neutral-300 px-3 py-2"
+        />
+        @if (form.controls.price.touched && form.controls.price.invalid) {
+          <p class="text-sm text-red-700">Enter a price of 0 or more.</p>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium" for="capacity">Capacity</label>
+        <input
+          id="capacity"
+          type="number"
+          formControlName="capacity"
+          min="1"
+          step="1"
+          class="rounded-md border border-neutral-300 px-3 py-2"
+        />
+        @if (form.controls.capacity.touched && form.controls.capacity.invalid) {
+          <p class="text-sm text-red-700">Capacity must be at least 1.</p>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium" for="image">Image path or URL</label>
+        <input
+          id="image"
+          type="text"
+          formControlName="image"
+          placeholder="/room-1.jpg or https://..."
+          class="rounded-md border border-neutral-300 px-3 py-2"
+        />
+      </div>
+
+      @if (isEdit()) {
+        <label class="flex items-center gap-2 text-sm font-medium">
+          <input type="checkbox" formControlName="available" class="size-4" />
+          Available
+        </label>
+      }
+
+      <div class="mt-2 flex gap-3">
+        <button
+          type="submit"
+          class="rounded-md bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700"
+        >
+          {{ isEdit() ? 'Save changes' : 'Create room' }}
+        </button>
+        <a
+          routerLink="/rooms"
+          class="rounded-md border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100"
+        >
+          Cancel
+        </a>
+      </div>
+    </form>
+  }
+</section>

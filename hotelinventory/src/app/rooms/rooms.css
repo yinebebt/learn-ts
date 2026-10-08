@@ -1,6 +1,6 @@
 .rooms__header {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -13,9 +13,25 @@
 }
 
 .rooms__summary {
-  margin: 0;
+  margin: 0.25rem 0 0;
   color: #666;
   font-size: 0.95rem;
+}
+
+.rooms__add {
+  flex-shrink: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  color: #1a1a1a;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rooms__add:hover {
+  background: #1a1a1a;
+  color: #fff;
 }
 
 .rooms__search {
@@ -36,6 +52,28 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;
+}
+
+.rooms__status {
+  margin: 0 0 0.75rem;
+  color: #444;
+}
+
+.rooms__retry {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  background: #fff;
+  color: #1a1a1a;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rooms__retry:hover {
+  background: #1a1a1a;
+  color: #fff;
 }
 
 .rooms__empty {
