@@ -6,3 +6,8 @@ node_modules
 coverage
 *.log
 __screenshots__/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+hotelinventory/roadmap.md

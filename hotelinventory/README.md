@@ -1,20 +1,22 @@
 # Hotelinventory
 
-Angular 22 hotel inventory app (`v0.6.0`).
+Angular 22 hotel inventory app (`v0.7.1`).
 
 ```bash
 npm start    # http://localhost:4200/
-npm test
+npm test     # Vitest unit tests
+npm run e2e  # Playwright smokes
+npm run e2e:ui
 npm run build
 ```
 
-**Stack now:** standalone components, router, reactive forms, `RoomsService`. List/detail: raw CSS. Form page: Tailwind. Currency default: `ETB`. Data is in-memory with a short fake load (loading + error + retry). No real API yet.
-
-**Learn / ship plan:** [roadmap.md](./roadmap.md)
+**Stack now:** standalone components, router, reactive forms, `RoomsService`, Playwright e2e. List/detail: raw CSS. Form page: Tailwind. Currency default: `ETB`. Data is in-memory with a short fake load (loading + error + retry). No real API yet.
 
 ## Layout
 
 ```
+e2e/                     # Playwright smokes
+playwright.config.ts
 src/app/
   rooms/
     rooms.*             # list + search (app landing)
@@ -56,7 +58,18 @@ src/app/
 
 `[value]` + `(input)` are two separate one-way bindings (not one two-way step).
 
+## E2E (Playwright)
+
+| Command | What |
+|---------|------|
+| `npm run e2e` | Headless Chromium smokes + writes `playwright-report/` |
+| `npm run e2e:ui` | Same specs in Playwright’s interactive UI (debug) |
+| `npm run e2e:report` | Open the last HTML report (after `npm run e2e`) |
+
+`webServer` in `playwright.config.ts` starts `ng serve` when nothing is on `:4200`.  
+Keep **Vitest** (`npm test`) for units; Playwright only for a few full-browser flows.
+
 ## Current
 
-- Rooms CRUD via `RoomsService` (fake load, loading/error) — `v0.6.0`
-- Next: feature folders + Angular Material (`v0.7.0`)
+- Playwright smokes — `v0.7.1` (Phase 6b early; Material still open)
+- Next product step: feature folders + Angular Material (`v0.7.0`)
