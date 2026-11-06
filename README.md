@@ -54,6 +54,33 @@ Angular is a component-based framework for single-page applications. A SPA loads
 
 A component is self-contained: template, styles, and class. Standalone components were previewed in Angular 14, stabilized in Angular 15, and became the default in Angular 19. You no longer set `standalone: true`. NgModules still work; a component that belongs to one sets `standalone: false`. Dependencies are listed in the component `imports` array.
 
+### RxJS: search as you type
+
+A filter form that calls an API on every change has four problems: too many requests while typing, an older response landing after a newer one, a subscription that outlives the component, and one failed request ending the stream for good. Each operator fixes one:
+
+```ts
+this.filterForm.valueChanges
+  .pipe(
+    startWith(this.filterForm.getRawValue()),  // load once before the first change
+    debounceTime(300),                          // wait for typing to pause
+    distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+    tap(() => { this.loading = true; this.error = ''; }),
+    switchMap((filters) =>
+      this.eventService.getEvents(filters).pipe(
+        catchError(() => { this.error = 'Unable to load events'; return of([]); }),
+      ),
+    ),
+    takeUntilDestroyed(this.destroyRef),        // unsubscribe with the component
+  )
+  .subscribe((events) => { this.events = events; this.loading = false; });
+```
+
+`switchMap` unsubscribes from the previous inner observable when a new value arrives. For `HttpClient` that cancels the stale request, so only the latest response reaches `subscribe`.
+
+`catchError` goes on the inner request, not the outer stream. On the outer stream it would replace the whole pipeline after the first error, and typing would stop triggering requests.
+
+Clear `loading` in `subscribe`, not in a `finalize` on the inner request. A cancelled request also runs `finalize`, so it would clear `loading` while the newer request is still in flight.
+
 Topics still ahead:
 
 - templates and data binding
